@@ -37,8 +37,6 @@ module.exports = class ToolbarUtility {
 
                 if (hideableElementIds.length > 0) {
                     hideableElementIds.forEach(function (hideableElementId) {
-                        console.log('hideableElementId', hideableElementId);
-
                         const hideableElement = document.getElementById(hideableElementId);
                         hideableElement.style.display = 'none';
                     })
