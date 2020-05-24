@@ -55,15 +55,20 @@ module.exports = class ToolbarUtility {
                 if (resettableElementIds.length > 0) {
                     resettableElementIds.forEach(function (resettableElementId) {
                         const resettableElement = document.getElementById(resettableElementId);
-                        resettableElement.value = '';
-                        resettableElement.focus();
+
+                        if (resettableElement !== null) {
+                            resettableElement.value = '';
+                            resettableElement.focus();
+                        }
                     });
                 }
 
                 if (hideableElementIds.length > 0) {
                     hideableElementIds.forEach(function (hideableElementId) {
                         const hideableElement = document.getElementById(hideableElementId);
-                        hideableElement.style.display = 'none';
+                        if (hideableElement !== null) {
+                            hideableElement.style.display = 'none';
+                        }
                     })
                 }
 
