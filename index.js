@@ -10,6 +10,30 @@ module.exports = class ToolbarUtility {
     }
 
     /**
+     * On clicking source element, focus the element
+     * @param sourceEventElementId
+     * @param editableElementId
+     * @param eventType
+     */
+    focusElementOnEventType(
+        sourceEventElementId,
+        focusableElementId,
+        eventType = 'click'
+    ) {
+        const sourceEventElement = document.getElementById(sourceEventElementId);
+
+        if (sourceEventElement !== null) {
+            sourceEventElement.addEventListener(eventType, function (event) {
+                const focusableElement = document.getElementById(focusableElementId);
+
+                if (focusableElement !== null) {
+                    focusableElement.focus();
+                }
+            });
+        }
+    }
+
+    /**
      * Reset Element Values on Event Type.
      *
      * @param sourceEventElementId
@@ -21,12 +45,13 @@ module.exports = class ToolbarUtility {
         sourceEventElementId,
         resettableElementIds = [],
         hideableElementIds = [],
+        callbackFunction,
         eventType = 'click'
     ) {
         const sourceEventElement = document.getElementById(sourceEventElementId);
 
         if (sourceEventElement !== null) {
-            sourceEventElement.addEventListener(eventType, function (keyupEvent) {
+            sourceEventElement.addEventListener(eventType, function (event) {
                 if (resettableElementIds.length > 0) {
                     resettableElementIds.forEach(function (resettableElementId) {
                         const resettableElement = document.getElementById(resettableElementId);
@@ -41,6 +66,8 @@ module.exports = class ToolbarUtility {
                         hideableElement.style.display = 'none';
                     })
                 }
+
+                callbackFunction();
             });
         }
     }
@@ -64,7 +91,7 @@ module.exports = class ToolbarUtility {
         const thisClass = this;
 
         if (sourceEventElement !== null) {
-            sourceEventElement.addEventListener(eventType, function (keyupEvent) {
+            sourceEventElement.addEventListener(eventType, function (event) {
                 let textBlock = '';
 
                 if (sourceEventElementId !== sourceInputElementId) {
@@ -109,7 +136,7 @@ module.exports = class ToolbarUtility {
         const thisClass = this;
 
         if (sourceEventElement !== null) {
-            sourceEventElement.addEventListener(eventType, function (keyupEvent) {
+            sourceEventElement.addEventListener(eventType, function (event) {
                 let textBlock = '';
 
                 if (sourceEventElementId !== sourceInputElementId) {
