@@ -242,7 +242,11 @@ module.exports = class ToolbarUtility {
         let maxCharacter = 500;
 
         if (maxCharacterAllowed !== null) {
-            maxCharacter = parseInt(maxCharacterAllowed.value)
+            const maxCharacterAllowedValue = maxCharacterAllowed.textContent.trim();
+
+            if (maxCharacterAllowedValue !== '' && /^[0-9]+$/.test(maxCharacterAllowedValue)) {
+                maxCharacter = parseInt(maxCharacterAllowedValue)
+            }
         }
 
         if (parentOfTargetElement !== null) {
