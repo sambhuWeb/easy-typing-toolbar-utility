@@ -15,6 +15,7 @@
          userename: r******
          password: ***
          email: sam***.***.*****@****.com
+         ENTER OPT sent to email address
    
      To Verify if Logged in:
      
